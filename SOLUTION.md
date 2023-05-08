@@ -12,15 +12,16 @@ Write here notes about your implementation choices and assumptions.
 This section contains additional questions your expected to answer before the debrief interview.
 
 - **What is missing with your implementation to go to production?**
-- Configuration of CI/CD pipelines workflows.
-- Improve Validations.
-- Writing E2E tests using Playwright or Cypress.
-- Integrating Kubernetes + Helms.
-- Functional and Integration Tests
-- API Serialization
-- Internationalization
-- Sentry Error Logging & Monitoring
-- Product Analytics (Mixpanel)
+  Here are the following steps I will take before going to production...
+  - Configuration of CI/CD pipelines workflows.
+  - Improve Validations.
+  - Writing E2E tests using Playwright or Cypress.
+  - Integrating Kubernetes + Helms.
+  - Functional and Integration Tests
+  - API Serialization
+  - Internationalization
+  - Sentry Error Logging & Monitoring
+  - Product Analytics (Mixpanel)
 
 - **How would you deploy your implementation?**
 There are multiple ways this application can be deployed. I would approach it in one of the ways.
