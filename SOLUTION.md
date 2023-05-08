@@ -14,12 +14,13 @@ This section contains additional questions your expected to answer before the de
 - **What is missing with your implementation to go to production?**
   Here are the following steps I will take before going to production...
   - Configuration of CI/CD pipelines workflows.
+  - Add Pagination
   - Improve Validations.
   - Writing E2E tests using Playwright or Cypress.
   - Integrating Kubernetes + Helms.
   - Functional and Integration Tests
   - API Serialization
-  - Internationalization
+  - Internationalization (I18n)
   - Sentry Error Logging & Monitoring
   - Product Analytics (Mixpanel)
 
@@ -45,6 +46,19 @@ There are multiple ways this application can be deployed. I would approach it in
 
 - **The application aims at storing hundreds of thousands listings and millions of prices, and be accessed by millions
   of users every month. What should be anticipated and done to handle it?**
+    Following are the approaches I will take to make sure to handle large data sets
+    - Caching and Memoization.
+    - Virtualisation.
+    - Pagination.
+    - Profiling Components with React Profiler
+    - Better utilising React's top level API. Using React.memo to improve performance and memoizing the state updates.
+    - State Management (lightweight and immutable approaches)
+    - Using microfrontend architecture to distribute implementation complexity.
+    - Error Monitoring and Reporting (Sentry)
+    - Server Side Rendering and Leveraging Edge computation.
+    - Introducing Charts and visualisation to better represent data.
+    - Load Balancing on the server.
+    - Accessibility ARIA compatible.
 
   NB : You can update the [given architecture schema](./schemas/Aviv_Technical_Test_Architecture.drawio) by importing it
   on [diagrams.net](https://app.diagrams.net/) 
