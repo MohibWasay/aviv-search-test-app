@@ -1,0 +1,25 @@
+@use '@styles/variables' as *;
+
+$selector: ".Select";
+
+#{$selector} {
+  display: grid;
+  margin-bottom: $space-s;
+
+  &__description {
+    font-size: $font-s;
+  }
+
+  &__field {
+    padding: $space-s;
+    width: 100%;
+
+    &--has-error {
+      color: red;
+    }
+
+    &--is-disabled {
+      pointer-events: none;
+    }
+  }
+}

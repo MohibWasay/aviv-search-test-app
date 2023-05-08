@@ -15,11 +15,15 @@
   },
   "dependencies": {
     "axios": "^1.2.2",
+    "formik": "2.2.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.6.1",
     "sanitize.css": "13.0.0",
-    "sass": "1.55.0"
+    "sass": "1.55.0",
+    "zod": "3.21.4",
+    "zod-formik-adapter": "1.2.0",
+    "zustand": "4.3.8"
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
@@ -54,6 +58,7 @@
     "jest-environment-jsdom": "29.1.2",
     "pre-commit": "1.2.2",
     "prettier": "2.7.1",
+    "react-bem-helper": "1.4.1",
     "typescript": "4.8.4",
     "vite": "3.1.4"
   }

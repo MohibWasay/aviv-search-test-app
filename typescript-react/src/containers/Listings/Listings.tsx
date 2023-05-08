@@ -1,20 +1,46 @@
-import ListingCard from '@components/ListingCard';
-import ListingForm from '@components/ListingForm';
+import { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import styles from './listings.module.scss';
 
+import { create } from '@/common/createBem';
+import ListingCard from '@/components/organisms/ListingCard';
+import { useListingsStore } from '@/stores/useListingStore';
+
+const bem = create(styles, 'listings');
+
 const Listings = () => {
+  const navigate = useNavigate();
+  const { listings, setSelectedListingById, fetchListings } =
+    useListingsStore();
+
+  useEffect(() => {
+    fetchListings();
+  }, [fetchListings]);
+
+  const handleRedirect = useCallback(
+    (id: number) => {
+      navigate(`/listings/${id}/prices`);
+      setSelectedListingById(id);
+    },
+    [navigate, setSelectedListingById],
+  );
+
   return (
-    <main className={styles['listings']}>
-      <h1 className={styles['listings__title']}>Main Listings page</h1>
-      <div className={styles['listings__wrapper']}>
-        <aside className={styles['listings__aside']}>
-          <h2 className={styles['listings__sub-title']}>Add a listing</h2>
-          <ListingForm />
-        </aside>
-        <section className={styles['listings__section']}>
-          <h2 className={styles['listings__sub-title']}>Listings</h2>
-          <ListingCard />
+    <main className={bem()}>
+      <h1 className={bem('title')}>Main Listings page</h1>
+      <div className={bem('wrapper')}>
+        <section className={bem('section')}>
+          <h2 className={bem('sub-title')}>Listings</h2>
+          <div className={bem('listings')}>
+            {listings.map((listing) => (
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+                onRedirect={handleRedirect}
+              />
+            ))}
+          </div>
         </section>
       </div>
     </main>

@@ -1,18 +1,12 @@
 @use '@styles/variables' as *;
 
-$selector: '.listings';
+$selector: '.new-listing';
 
 #{$selector} {
   padding: $space-s;
 
   @media screen and (min-width: $min-screen-s) {
     padding: $space-m;
-  }
-
-  &__listings {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
   }
 
   &__wrapper {

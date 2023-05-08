@@ -1,0 +1,37 @@
+@use '@styles/variables' as *;
+
+$selector: ".Input";
+
+#{$selector} {
+  display: grid;
+  margin-bottom: $space-s;
+
+
+  &__label {
+    &--has-error {
+      color: red;
+    }
+  }
+
+  &__description {
+    font-size: $font-s;
+    &--has-error {
+      color: red;
+    }
+  }
+
+  &__field {
+    padding: $space-s;
+    border: 1px solid black;
+    width: 100%;
+
+    &--has-error {
+      color: red;
+      border-color: red;
+    }
+
+    &--is-disabled {
+      pointer-events: none;
+    }
+  }
+}

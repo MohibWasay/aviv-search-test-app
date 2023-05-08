@@ -1,6 +1,9 @@
 @use '@styles/variables' as *;
 
-.listing-card {
+
+$selector: ".listing-card";
+
+#{$selector} {
   width: 100%;
   align-items: baseline;
   border: 1px solid $neutral-1;
