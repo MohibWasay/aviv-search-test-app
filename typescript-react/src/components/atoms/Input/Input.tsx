@@ -36,7 +36,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           {label}:{' '}
         </label>
       ) : null}
-      <input ref={ref} className={inputClassName} {...rest} />
+      <input
+        ref={ref}
+        aria-label={props.name}
+        className={inputClassName}
+        {...rest}
+      />
       {errorMessage && (
         <span className={descriptionClassName}>{errorMessage}</span>
       )}

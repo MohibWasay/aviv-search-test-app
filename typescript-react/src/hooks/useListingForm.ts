@@ -1,18 +1,15 @@
 import React from 'react';
 import { FormikErrors, FormikTouched, useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { ListingData } from '../types/listing';
 
-import { useListingsStore } from '@/stores/useListingStore';
+import { ListingFormSchema } from '@/validators/createListing';
 
 type UseListingFormHookInput = {
+  onSubmit: (values: ListingData) => Promise<void>;
   initialValues?: Partial<ListingData>;
 };
-
-const { createListing } = useListingsStore.getState();
 
 type UseListingFormHook = (p: UseListingFormHookInput) => {
   values: ListingData;
@@ -39,51 +36,13 @@ type UseListingFormHook = (p: UseListingFormHookInput) => {
   };
 };
 
-const ListingFormSchema = z.object({
-  name: z
-    .string({ required_error: 'Name is Required' })
-    .max(50, 'Must be maxiumum 50 characters long')
-    .min(1, 'There is no name with only one alphabet'),
-
-  postal_address: z.object({
-    street_address: z
-      .string({ required_error: 'Street Address is Required' })
-      .max(200, 'This is a very long address'),
-
-    postal_code: z
-      .string({ required_error: 'Postal Code is Required' })
-      .regex(/\d{5}/, 'This is not a valid postal code'),
-
-    city: z
-      .string({ required_error: 'City Name is Required' })
-      .regex(
-        /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
-        'This is not a valid city name',
-      ),
-
-    country: z
-      .string({ required_error: 'Country Name is Required' })
-      .regex(
-        /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/,
-        'This is not a valid country name',
-      ),
-  }),
-
-  description: z.string(),
-  latest_price_eur: z.number(),
-  surface_area_m2: z.number(),
-  rooms_count: z.number(),
-  contact_phone_number: z.string(),
-  building_type: z.string(),
-});
-
-export const useListingForm: UseListingFormHook = ({ initialValues }) => {
-  const navigate = useNavigate();
-
+export const useListingForm: UseListingFormHook = ({
+  initialValues,
+  onSubmit,
+}) => {
   const formik = useFormik<ListingData>({
     onSubmit: async (values) => {
-      await createListing(values);
-      navigate('/listings');
+      await onSubmit(values);
     },
     validationSchema: toFormikValidationSchema(ListingFormSchema),
     initialValues: initialValues ?? {

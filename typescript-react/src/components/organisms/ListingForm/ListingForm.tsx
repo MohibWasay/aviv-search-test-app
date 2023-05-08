@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { getIn } from 'formik';
 
 import styles from './listing-form.module.scss';
@@ -6,12 +7,17 @@ import { create } from '@/common/createBem';
 import { Input } from '@/components/atoms/Input';
 import { Select } from '@/components/atoms/Select/Select';
 import { useListingForm } from '@/hooks/useListingForm';
+import { ListingData } from '@/types/listing';
 
 const bem = create(styles, 'ListingForm');
 
-const ListingForm = () => {
+type ListingFormProps = {
+  onSubmit: (values: ListingData) => Promise<void>;
+};
+
+const ListingForm: FC<ListingFormProps> = ({ onSubmit }) => {
   const { values, handleChange, errors, touched, handleSubmit, handleBlur } =
-    useListingForm({});
+    useListingForm({ onSubmit });
 
   return (
     <form className={bem()} onSubmit={handleSubmit}>

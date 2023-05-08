@@ -30,7 +30,8 @@ const ListingCard: FC<ListingCardProps> = ({ listing, onRedirect }) => (
 
     <section className={bem('address')}>
       <address data-testid="street_address">
-        {listing.postal_address?.street_address}
+        {listing.postal_address?.street_address},{' '}
+        {listing.postal_address?.postal_code}, {listing.postal_address?.city}
       </address>
     </section>
 
@@ -52,20 +53,21 @@ const ListingCard: FC<ListingCardProps> = ({ listing, onRedirect }) => (
       <p data-testid="description">{listing.description}</p>
     </section>
 
-    <div className={styles['listing-card__footer']}>
-      <p className={styles['listing-card__reference']}>
+    <div className={bem('footer')}>
+      <p className={bem('reference')}>
         Ref: 123456 <br />
         Last update: {formatDate(new Date(listing.updated_date))}
       </p>
 
-      {onRedirect ? (
+      {!!onRedirect && (
         <button
-          className={styles['listing-card__link']}
+          aria-label="submit"
+          className={bem('link')}
           onClick={() => onRedirect(listing.id)}
         >
           See history &rarr;
         </button>
-      ) : null}
+      )}
     </div>
   </article>
 );
